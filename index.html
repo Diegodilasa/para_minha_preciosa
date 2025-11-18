@@ -5,12 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Luana</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Tone.js CDN (Para a Trilha Sonora Secreta) -->
- <div></div>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -19,10 +15,10 @@
         /* Definição da Paleta de Cores e Fontes */
         :root {
             --bg-color: #FDFBF6;      /* Pergaminho/Creme Suave */
-            --text-color: #3D3D3D;    /* Texto principal (um pouco mais suave que preto) */
-            --night-blue: #0A1931;    /* Azul Noturno (Universo) */
-            --soft-gold: #D4AF37;     /* Dourado Suave (Estrelas, Cabelo) */
-            --rose-red: #B91C1C;      /* Vermelho (Rosa) */
+            --text-color: #3D3D3D;    /* Texto principal */
+            --night-blue: #0A1931;    /* Azul Noturno */
+            --soft-gold: #D4AF37;     /* Dourado Suave */
+            --rose-red: #B91C1C;      /* Vermelho Rosa */
         }
         
         /* Aplicando as fontes base */
@@ -40,7 +36,7 @@
         
         /* Estilos do Carrossel */
         .carousel-slide {
-            transition: opacity 1.5s ease-in-out; /* Transição de fade suave */
+            transition: opacity 1.5s ease-in-out;
         }
         
         .carousel-dot {
@@ -51,7 +47,7 @@
             background-color: var(--soft-gold);
         }
         
-        /* Efeito de "brilho" sutil para as estrelas */
+        /* Efeito de "brilho" para as estrelas */
         @keyframes twinkle {
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
@@ -61,7 +57,7 @@
             animation: twinkle 3s infinite ease-in-out;
         }
         
-        /* Estilo para os botões do carrossel (aparecem no hover) */
+        /* Estilo para os botões do carrossel */
         .carousel-btn {
             opacity: 0;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease;
@@ -76,44 +72,39 @@
             transform: translateY(-50%) scale(1.1);
         }
         
-        /* --- Estilos das Novas Features --- */
-        
-        /* Feature 2: Controles de Página (Modo Noite / Música) */
+        /* Controles de Página */
         .page-controls {
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
         }
         
-        /* Ícones dentro dos controles - cor inicial para o header escuro */
         .page-controls button svg {
             color: white;
             transition: color 0.3s ease;
         }
 
-        /* Feature 2: Estilos do Modo Noite */
+        /* Modo Noite */
         body.night-mode {
             background-color: var(--night-blue);
-            color: #e0e0e0; /* Texto claro padrão */
+            color: #e0e0e0;
             transition: background-color 0.7s ease, color 0.7s ease;
         }
         
-        /* Seções específicas no modo noite */
         body.night-mode #galeria {
-            background-color: rgba(255, 255, 255, 0.05); /* Fundo sutil para o carrossel */
+            background-color: rgba(255, 255, 255, 0.05);
         }
         
         body.night-mode footer {
-            background-color: #061225; /* Um azul um pouco mais escuro */
+            background-color: #061225;
             border-top-color: var(--soft-gold);
         }
         
-        /* Textos no modo noite */
         body.night-mode .font-title {
             color: var(--soft-gold);
         }
         body.night-mode p,
         body.night-mode #carousel-caption {
-            color: #c0c0c0; /* Cinza claro para parágrafos */
+            color: #c0c0c0;
         }
         
         body.night-mode footer .font-title {
@@ -126,7 +117,6 @@
             color: var(--soft-gold);
         }
         
-        /* Mensagem da raposa no modo noite */
         body.night-mode #fox-message {
             background-color: #061225;
             border-color: var(--soft-gold);
@@ -138,10 +128,10 @@
              color: var(--soft-gold) !important;
         }
         body.night-mode #fox-svg {
-            fill: #e0e0e0; /* Raposa fica clara */
+            fill: #e0e0e0;
         }
         
-        /* Partículas de Estrela (Modo Noite) */
+        /* Partículas de Estrela */
         @keyframes twinkle-particle {
             0%, 100% { opacity: 0; transform: scale(0.5); }
             50% { opacity: 1; transform: scale(1); }
@@ -157,12 +147,12 @@
             pointer-events: none;
         }
         
-        /* Feature 3: Legenda do Carrossel */
+        /* Legenda do Carrossel */
         #carousel-caption {
             transition: opacity 0.4s ease-in-out;
         }
         
-        /* Feature 1: Mensagem da Raposa (Mobile) */
+        /* Mensagem da Raposa */
         #fox-message.force-show {
             opacity: 1;
             visibility: visible;
@@ -172,73 +162,56 @@
 </head>
 <body class="antialiased transition-colors duration-700">
 
-    <!-- Seção de Controles (Modo Noite / Música) -->
     <div class="page-controls fixed top-4 right-4 z-50 flex gap-3">
         <button id="music-toggle" title="Tocar música" class="bg-white/30 p-2 rounded-full hover:bg-white/50 transition-all shadow-md">
-            <!-- Ícone de Nota Musical -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" /></svg>
         </button>
         <button id="night-mode-toggle" title="Acender as estrelas" class="bg-white/30 p-2 rounded-full hover:bg-white/50 transition-all shadow-md">
-            <!-- Ícone de Lua -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
         </button>
     </div>
 
-    <!-- Container para as estrelas do Modo Noite -->
     <div id="stars-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
-    <!-- Seção 1: O Título (Abertura) -->
     <header class="relative min-h-[80vh] md:min-h-screen flex flex-col justify-center items-center text-center p-8 bg-[--night-blue] text-white overflow-hidden">
         
-        <!-- Elementos Gráficos: Estrelas Sutis -->
-        <!-- SVG de uma estrela simples -->
         <svg class="star absolute top-[20%] left-[15%] w-4 h-4 text-yellow-300" style="animation-delay: 0s;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/></svg>
         <svg class="star absolute top-[40%] right-[10%] w-6 h-6 text-yellow-200" style="animation-delay: 1s;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/></svg>
         <svg class="star absolute bottom-[30%] left-[25%] w-3 h-3 text-yellow-400" style="animation-delay: 2s;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/></svg>
         <svg class="star absolute bottom-[20%] right-[30%] w-4 h-4 text-yellow-300" style="animation-delay: 0.5s;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/></svg>
 
         <div class="z-10">
-            <!-- Título Principal (H1) -->
             <h1 class="font-title text-5xl md:text-8xl text-[var(--soft-gold)] mb-6 drop-shadow-lg">
                 Para Luana, a Rosa do Meu Planeta
             </h1>
-            
-            <!-- A Frase Romântica (Subtítulo H2) -->
             <h2 class="text-xl md:text-3xl italic max-w-3xl mx-auto font-serif text-gray-200">
                 "Tu te tornas eternamente responsável por aquilo que cativas. E tu, Luana, cativaste meu coração."
             </h2>
         </div>
     </header>
 
-    <!-- Corpo Principal da Página -->
     <main>
         
-        <!-- Seção 2: Galeria de Memórias (O Carrossel) -->
         <section id="galeria" class="py-16 md:py-24 bg-white/30">
             <div class="container mx-auto px-4">
-                
-                <!-- Carrossel Container -->
                 <div id="carousel-container" class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-lg shadow-2xl" style="aspect-ratio: 16 / 9;">
                     
-                    <!-- Slides (Imagens de Placeholder) -->
-                    <!-- Substitua os 'src' pelas suas fotos -->
                     <div class="carousel-slide absolute top-0 left-0 w-full h-full opacity-100">
-                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2002.40.16.jpeg" alt="Memória de Diego e Luana 1" class="w-full h-full object-cover">
+                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2002.40.16.jpeg" alt="Memória 1" class="w-full h-full object-cover">
                     </div>
                     
                     <div class="carousel-slide absolute top-0 left-0 w-full h-full opacity-0">
-                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2003.00.06.jpeg" alt="Memória de Diego e Luana 2" class="w-full h-full object-cover">
+                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2003.00.06.jpeg" alt="Memória 2" class="w-full h-full object-cover">
                     </div>
                     
                     <div class="carousel-slide absolute top-0 left-0 w-full h-full opacity-0">
-                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2002.40.16%20(2).jpeg" alt="Memória de Diego e Luana 3" class="w-full h-full object-cover">
+                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2002.40.16%20(2).jpeg" alt="Memória 3" class="w-full h-full object-cover">
                     </div>
 
                     <div class="carousel-slide absolute top-0 left-0 w-full h-full opacity-0">
-                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2002.40.16%20(3).jpeg" alt="Memória de Diego e Luana 4" class="w-full h-full object-cover">
+                        <img src="https://uploads.onecompiler.io/4443f7ggu/444z5jcxe/WhatsApp%20Image%202025-11-18%20at%2002.40.16%20(3).jpeg" alt="Memória 4" class="w-full h-full object-cover">
                     </div>
 
-                    <!-- Controles de Navegação (Setas) -->
                     <button id="prevBtn" class="carousel-btn absolute top-1/2 left-4 -translate-y-1/2 bg-white/50 p-2 rounded-full text-gray-800 hover:bg-white z-20">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                     </button>
@@ -246,21 +219,13 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                     </button>
                     
-                    <!-- Indicadores de Navegação (Pontos) -->
-                    <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-                        <!-- Pontos serão gerados pelo JS -->
-                    </div>
+                    <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20"></div>
                 </div>
                 
-                <!-- Legenda da Linha do Tempo Cativa (Feature 3) -->
-                <div id="carousel-caption" class="text-center text-lg italic text-gray-700 mt-8 max-w-3xl mx-auto px-4">
-                    <!-- A legenda será inserida pelo JS -->
-                </div>
-                
+                <div id="carousel-caption" class="text-center text-lg italic text-gray-700 mt-8 max-w-3xl mx-auto px-4"></div>
             </div>
         </section>
         
-        <!-- Seção 3: O Nosso Tempo (O Contador Dinâmico) -->
         <section id="contador" class="py-20 md:py-28 text-center px-4">
             <h2 class="text-4xl md:text-5xl font-title text-[--night-blue] mb-6">
                 Cultivando Nosso Universo
@@ -270,7 +235,6 @@
                 Estamos juntos há:
             </p>
             
-            <!-- Contador Dinâmico -->
             <div id="time-counter-container" class="flex flex-wrap justify-center items-baseline gap-x-4 gap-y-2 md:gap-x-6 text-[--soft-gold] my-4 tracking-wide" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
                 <div class="text-center">
                     <span id="days-count" class="text-5xl md:text-7xl font-bold">...</span>
@@ -291,15 +255,12 @@
             </p>
         </section>
         
-        <!-- Seção 1: A Mensagem Secreta da Raposa -->
         <section id="segredo" class="py-16 md:py-24 flex justify-center items-center">
             <div id="fox-container" class="relative group cursor-pointer p-4" aria-labelledby="fox-message">
-                <!-- Ilustração da Raposa (SVG) -->
                 <svg id="fox-svg" class="w-20 h-20 text-gray-600 fill-current transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path d="M15.6 15.4c-.4 1.3-1.2 2.4-2.3 3.1-.8.5-1.7.8-2.6.8-1.1 0-2.1-.4-3-1.1-.9-.7-1.5-1.7-1.9-2.8-.2-.6-.2-1.2 0-1.8.2-.6.5-1.1.9-1.6.4-.5.9-.9 1.4-1.2L12 8.4l3.1 3.1c.5.3 1 .7 1.4 1.2.4.5.7 1 .9 1.6.2.6.2 1.2 0 1.7zM12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm2 13.8c-.3.8-.8 1.5-1.5 2-.5.3-1.1.5-1.7.5-.7 0-1.4-.2-2-.7-.7-.5-1.2-1.2-1.5-2-.2-.5-.2-.9 0-1.4.1-.5.4-.9.7-1.3.3-.4.7-.7 1.1-.9l.2-.2v-1.7c-1.3.2-2.4.8-3.3 1.6-.9.8-1.5 1.9-1.8 3-.3 1.1 0 2.3.5 3.3.6 1 1.4 1.8 2.5 2.4 1.1.6 2.3.9 3.5.9s2.4-.3 3.5-.9c1.1-.6 1.9-1.4 2.5-2.4.6-1 .8-2.2.5-3.3-.3-1.1-1-2.2-1.8-3-.9-.8-2-1.4-3.3-1.6v1.7l.2.2c.4.2.8.5 1.1.9.3.4.6.8.7 1.3.2.5.2 1 0 1.4zM13 8h-2V5h2v3z"/>
                 </svg>
                 
-                <!-- A Mensagem Secreta -->
                 <div id="fox-message" role="tooltip" 
     class="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 w-72 p-6 bg-[var(--bg-color)] 
            rounded-lg shadow-xl border border-gray-200 opacity-0 invisible transition-all 
@@ -319,16 +280,12 @@
         
     </main>
 
-    <!-- Seção 4: Assinatura (Rodapé) -->
     <footer class="py-16 bg-gray-100 text-center border-t border-gray-200">
-        
-        <!-- Elemento Gráfico: Rosa (SVG) -->
         <svg class="w-16 h-16 mx-auto mb-6 text-[var(--rose-red)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
             <path d="M12 6c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
             <path d="M12 12c-3.31 0-6 2.69-6 6h12c0-3.31-2.69-6-6-6z"/>
             <path d="M7 18c0-1.66 1.34-3 3-3h4c1.66 0 3 1.34 3 3"/>
-            <!-- Simplificação de uma rosa estilizada -->
             <path d="M12 12c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
             <path d="M12 2c-3.18 0-5.9 1.52-7.75 3.82"/>
             <path d="M12 2c3.18 0 5.9 1.52 7.75 3.82"/>
@@ -346,7 +303,6 @@
     </footer>
 
     
-    <!-- Scripts JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -356,30 +312,25 @@
                 const startDate = new Date('2024-11-17T00:00:00');
                 const today = new Date();
                 
-                const diffTime = today - startDate; // Diferença em milissegundos
+                const diffTime = today - startDate; 
 
-                // Seleciona os elementos
                 const daysEl = document.getElementById('days-count');
                 const hoursEl = document.getElementById('hours-count');
                 const minutesEl = document.getElementById('minutes-count');
 
                 if (!daysEl || !hoursEl || !minutesEl) return;
 
-                // Função para adicionar um zero à esquerda se for menor que 10
                 const pad = (num) => (num < 10 ? '0' + num : num);
 
                 if (diffTime < 0) {
-                    // Se a data de início ainda não chegou
                     daysEl.textContent = '00';
                     hoursEl.textContent = '00';
                     minutesEl.textContent = '00';
                 } else {
-                    // Calcula dias, horas e minutos
                     let days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
                     let hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     let minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
                     
-                    // Atualiza o HTML
                     daysEl.textContent = pad(days);
                     hoursEl.textContent = pad(hours);
                     minutesEl.textContent = pad(minutes);
@@ -394,19 +345,17 @@
             
             let currentIndex = 0;
             let slideInterval;
-            const slideDuration = 5000; // 5 segundos
+            const slideDuration = 5000; 
 
-            // Legendas da Linha do Tempo (Feature 3)
             const captions = [
-                "O Dia em que tiramos nossa primeira foto", // Para a Foto 1
-                "O Processo de Cativar",     // Para a Foto 2
-                "Nossa viagem Única",           // Para a Foto 3
-                "O Essencial para mim é vc"                 // Para a Foto 4
+                "O Dia em que tiramos nossa primeira foto", 
+                "O Processo de Cativar",      
+                "Nossa viagem Única",            
+                "O Essencial para mim é vc"                  
             ];
             const captionElement = document.getElementById('carousel-caption');
 
             if (slides.length > 0) {
-                // Criar os pontos de navegação
                 slides.forEach((_, index) => {
                     const dot = document.createElement('button');
                     dot.classList.add('carousel-dot', 'w-3', 'h-3', 'bg-white', 'rounded-full', 'opacity-70', 'hover:opacity-100');
@@ -423,27 +372,22 @@
                 const dots = document.querySelectorAll('.carousel-dot');
 
                 function showSlide(index) {
-                    // Garante que o índice seja cíclico
                     currentIndex = (index + slides.length) % slides.length;
                     
-                    // Esconde todos os slides
                     slides.forEach(slide => {
                         slide.style.opacity = '0';
                     });
                     
-                    // Mostra o slide atual
                     slides[currentIndex].style.opacity = '1';
                     
-                    // Atualiza a legenda (Feature 3)
                     if (captionElement) {
-                        captionElement.style.opacity = 0; // Fade out
+                        captionElement.style.opacity = 0; 
                         setTimeout(() => {
                             captionElement.textContent = captions[currentIndex];
-                            captionElement.style.opacity = 1; // Fade in
-                        }, 400); // Mais rápido que o fade do slide
+                            captionElement.style.opacity = 1; 
+                        }, 400); 
                     }
                     
-                    // Atualiza os pontos
                     dots.forEach((dot, i) => {
                         dot.classList.toggle('active-dot', i === currentIndex);
                         dot.classList.toggle('opacity-100', i === currentIndex);
@@ -463,7 +407,6 @@
                     slideInterval = setInterval(nextSlide, slideDuration);
                 }
 
-                // Event Listeners para os botões
                 nextBtn.addEventListener('click', () => {
                     nextSlide();
                     resetInterval();
@@ -474,11 +417,10 @@
                     resetInterval();
                 });
 
-                // Iniciar o carrossel automático
                 slideInterval = setInterval(nextSlide, slideDuration);
             }
             
-            // --- LÓGICA DAS NOVAS FEATURES ---
+            // --- LÓGICA GERAL DA PÁGINA E MÚSICA ---
             
             const nightModeToggle = document.getElementById('night-mode-toggle');
             const musicToggle = document.getElementById('music-toggle');
@@ -487,28 +429,46 @@
             const foxContainer = document.getElementById('fox-container');
             const foxMessage = document.getElementById('fox-message');
 
-            // --- Ícones (SVG) ---
-            const iconMusic = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" /></svg>`;
-            const iconPause = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 9v6m4-6v6" /></svg>`;
+            // --- PLAYER DE MÚSICA (CATBOX) ---
+            // Link direto:
+            const minhaMusica = new Audio("https://files.catbox.moe/ywcsp3.mp3");
+            minhaMusica.loop = true;
+
+            musicToggle.addEventListener('click', function() {
+                if (minhaMusica.paused) {
+                    minhaMusica.play().then(() => {
+                        console.log("Música tocando");
+                        // Muda opacidade para mostrar que está ligado
+                        musicToggle.style.opacity = "1";
+                        musicToggle.style.backgroundColor = "rgba(255,255,255,0.8)";
+                    }).catch(e => console.log("Erro ao tocar:", e));
+                } else {
+                    minhaMusica.pause();
+                    console.log("Música pausada");
+                    musicToggle.style.opacity = "0.5";
+                    musicToggle.style.backgroundColor = "";
+                }
+            });
+
+            // --- MODO NOITE ---
             const iconMoon = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>`;
             const iconSun = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`;
 
-            // --- Feature 2: Modo Noite ---
             nightModeToggle.addEventListener('click', () => {
                 body.classList.toggle('night-mode');
                 if (body.classList.contains('night-mode')) {
-                    createStars(50); // Criar estrelas
+                    createStars(50); 
                     nightModeToggle.innerHTML = iconSun;
                     nightModeToggle.title = "Apagar as estrelas";
                 } else {
-                    starsContainer.innerHTML = ''; // Remover estrelas
+                    starsContainer.innerHTML = ''; 
                     nightModeToggle.innerHTML = iconMoon;
                     nightModeToggle.title = "Acender as estrelas";
                 }
             });
 
             function createStars(count) {
-                starsContainer.innerHTML = ''; // Limpa estrelas antigas
+                starsContainer.innerHTML = ''; 
                 for (let i = 0; i < count; i++) {
                     const star = document.createElement('span');
                     star.classList.add('particle-star');
@@ -523,103 +483,23 @@
                 }
             }
 
-            // --- Feature 4: Trilha Sonora Secreta (com Tone.js) ---
-            let musicPlaying = false;
-            const synth = new Tone.PolySynth(Tone.Synth, {
-                oscillator: { type: "fatsawtooth", count: 3, spread: 30 },
-                envelope: { attack: 0.01, decay: 0.1, sustain: 0.5, release: 0.8 },
-                volume: -12 // Volume mais baixo
-            }).toDestination();
-            
-            const melody = new Tone.Loop(time => {
-                // Acordes suaves e sonhadores (Am7, G, C, F)
-                synth.triggerAttackRelease(["A3", "C4", "E4", "G4"], "2n", time);
-                synth.triggerAttackRelease(["G3", "B3", "D4", "F4"], "2n", time + 2); 
-                synth.triggerAttackRelease(["C3", "E3", "G3", "B3"], "2n", time + 4); 
-                synth.triggerAttackRelease(["F3", "A3", "C4", "E4"], "2n", time + 6); 
-            }, "8m"); // Loop a cada 8 medidas
-
-            Tone.Transport.bpm.value = 75; // Lento e sonhador
-
-            musicToggle.addEventListener('click', async () => {
-                await Tone.start(); // Iniciar o contexto de áudio (necessário)
-                
-                if (musicPlaying) {
-                    // Pausar
-                    Tone.Transport.pause();
-                    musicPlaying = false;
-                    musicToggle.innerHTML = iconMusic;
-                    musicToggle.title = "Tocar música";
-                } else {
-                    // Tocar
-                    Tone.Transport.start();
-                    if (!melody.state === "started") {
-                        melody.start(0);
-                    }
-                    musicPlaying = true;
-                    musicToggle.innerHTML = iconPause;
-                    musicToggle.title = "Pausar música";
-                }
-            });
-
-            // --- Feature 1: Mensagem da Raposa (Mobile Click) ---
+            // --- RAPOSA (MOBILE) ---
             foxContainer.addEventListener('click', (e) => {
-                // Alterna uma classe para o toque em dispositivos móveis
-                // Previne "click fantasma" se o hover já ativou
                 if (window.innerWidth < 1024) { 
                     e.preventDefault();
                     foxMessage.classList.toggle('force-show');
                 }
             });
 
-            // Inicializar o contador
-            updateCounter(); // Chama uma vez ao carregar
-            setInterval(updateCounter, 60000); // Atualiza a cada 60 segundos (1 minuto)
+            // Inicializar tudo
+            updateCounter(); 
+            setInterval(updateCounter, 60000); 
             
-            // Inicializar a primeira legenda do carrossel
             if (captionElement) {
                 captionElement.textContent = captions[0];
             }
         });
     </script>
-<script>
-    // --- CONFIGURAÇÃO ---
-    
-    // 1. Cole aqui o link que você copiou do Catbox entre as aspas:
-    const linkDaMusica = "https://files.catbox.moe/ywcsp3.mp3";
-    
-    // --------------------
-
-    const botaoMusica = document.getElementById("music-toggle");
-    const minhaMusica = new Audio(linkDaMusica);
-    minhaMusica.loop = true; // Repetir para sempre
-
-    if (botaoMusica) {
-        // Ajuste visual inicial
-        botaoMusica.style.cursor = "pointer";
-        botaoMusica.style.opacity = "0.5"; // Começa meio transparente (desligado)
-
-        botaoMusica.addEventListener("click", function() {
-            if (minhaMusica.paused) {
-                // TENTAR TOCAR
-                minhaMusica.play().then(() => {
-                    console.log("Música iniciada!");
-                    botaoMusica.style.opacity = "1"; // Fica totalmente visível (ligado)
-                }).catch(erro => {
-                    console.error("Erro:", erro);
-                    alert("Erro ao tocar. Verifique se o link do Catbox está correto.");
-                });
-            } else {
-                // PAUSAR
-                minhaMusica.pause();
-                console.log("Música pausada.");
-                botaoMusica.style.opacity = "0.5"; // Volta a ficar transparente
-            }
-        });
-    } else {
-        console.error("ERRO: O botão com id 'music-toggle' não foi encontrado.");
-    }
-</script>
 </body>
 </html>
 
