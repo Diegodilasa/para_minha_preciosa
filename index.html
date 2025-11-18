@@ -9,29 +9,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Tone.js CDN (Para a Trilha Sonora Secreta) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+
     <style>
-        /* O "molde" redondo flutuante */
-        #vocaroo-icon {
+        /* 2. CSS para o ícone flutuante 🎵 */
+        #musicIcon {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px;  /* Largura do ícone */
-            height: 60px; /* Altura do ícone */
-            border-radius: 50%; /* Deixa redondo */
-            overflow: hidden;   /* Esconde o resto do player */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 1000;
-        }
-
-        /* O player do Vocaroo dentro do molde */
-        #vocaroo-icon iframe {
-            /* Move o player para a esquerda, 
-               para centralizar o botão de play dele */
-            margin-left: -5px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
+
+    <button id="musicIcon">🎵</button>
+
+    <script>
+        // 4. JavaScript para fazer o botão funcionar
+        
+        // **IMPORTANTE:** // Coloque seu arquivo MP3 na mesma pasta deste HTML
+        const player = new Tone.Player("ytmp3free.cc_so-nos-dois-youtubemp3free.org (1).mp3").toDestination();
+        player.loop = true; // Faz a música repetir
+
+        const iconButton = document.getElementById("musicIcon");
+
+        iconButton.onclick = function() {
+            Tone.start().then(() => {
+                if (player.state === "started") {
+                    player.stop();
+                    iconButton.textContent = "🎵"; // Ícone de Play
+                } else {
+                    player.start();
+                    iconButton.textContent = "⏸️"; // Ícone de Pause
+                }
+            });
+        };
+    </script>
+
+    <div id="vocaroo-icon">
+        <iframe width="300" height="60" src="https://vocaroo.com/embed/1fMHy0xWTBEJ?autoplay=0" frameborder="0" allow="autoplay"></iframe>
+    </div>
+
+</body>
+</html>
 
     <div id="vocaroo-icon">
         <iframe width="300" height="60" src="https://vocaroo.com/embed/1fMHy0xWTBEJ?autoplay=0" frameborder="0" allow="autoplay"></iframe>
@@ -614,6 +647,7 @@
 
 </body>
 </html>
+
 
 
 
