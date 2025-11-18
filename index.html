@@ -9,10 +9,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Tone.js CDN (Para a Trilha Sonora Secreta) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
-    
-  <div><iframe width="300" height="60" src="https://vocaroo.com/embed/1fMHy0xWTBEJ?autoplay=0" frameborder="0" allow="autoplay"></iframe><br><a href="https://voca.ro/1fMHy0xWTBEJ" title="Gravador de Voz do Vocaroo" target="_blank">Ver no Vocaroo &gt;&gt;</a></div>
+    <style>
+        /* O "molde" redondo flutuante */
+        #vocaroo-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;  /* Largura do ícone */
+            height: 60px; /* Altura do ícone */
+            border-radius: 50%; /* Deixa redondo */
+            overflow: hidden;   /* Esconde o resto do player */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
 
+        /* O player do Vocaroo dentro do molde */
+        #vocaroo-icon iframe {
+            /* Move o player para a esquerda, 
+               para centralizar o botão de play dele */
+            margin-left: -5px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="vocaroo-icon">
+        <iframe width="300" height="60" src="https://vocaroo.com/embed/1fMHy0xWTBEJ?autoplay=0" frameborder="0" allow="autoplay"></iframe>
+    </div>
+
+</body>
+</html>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -588,6 +614,7 @@
 
 </body>
 </html>
+
 
 
 
