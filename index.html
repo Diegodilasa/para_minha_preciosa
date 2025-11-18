@@ -9,51 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Tone.js CDN (Para a Trilha Sonora Secreta) -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
-
-<script>
-    // 2. Configuração do Player
-    // Pega o seu botão pelo ID que você me mostrou
-    const botaoMusica = document.getElementById("music-toggle");
-    
-    // Link direto do áudio (Vocaroo)
-    const linkMusica = "https://media1.vocaroo.com/mp3/1fMHy0xWTBEJ";
-
-    // Prepara o player
-    const player = new Tone.Player(linkMusica).toDestination();
-    player.loop = true; // Deixa a música repetindo
-
-    // 3. O que acontece ao clicar
-    if (botaoMusica) {
-        botaoMusica.addEventListener("click", async () => {
-            
-            // "Liga" o áudio do navegador (obrigatório)
-            await Tone.start();
-
-            if (player.state === "started") {
-                // Se já está tocando, PAUSA
-                player.stop();
-                
-                // (Opcional) Volta a cor original (transparente)
-                botaoMusica.style.backgroundColor = ""; 
-                botaoMusica.style.color = ""; // Cor original do ícone
-            } else {
-                // Se está parado, TOCA
-                player.start();
-                
-                // (Opcional) Muda a cor para indicar que está tocando (ex: branco forte)
-                botaoMusica.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
-                botaoMusica.style.color = "#000"; // Ícone preto para destacar
-            }
-        });
-    }
-</script>
-        // 4. JavaScript para fazer o botão funcionar
-        
-        // **IMPORTANTE:** // Coloque seu arquivo MP3 na mesma pasta deste HTML
-        const player = new Tone.Player("https://media1.vocaroo.com/mp3/1fMHy0xWTBEJ").toDestination();
-        player.loop = true; // Faz a música repetir
-    </script>
+ 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -626,9 +582,45 @@
             }
         });
     </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
 
+<script>
+    // Pega o seu botão pelo ID
+    const botaoMusica = document.getElementById("music-toggle");
+    
+    // Link direto do áudio (Vocaroo)
+    const linkMusica = "https://media1.vocaroo.com/mp3/1fMHy0xWTBEJ";
+
+    // Prepara o player
+    const player = new Tone.Player(linkMusica).toDestination();
+    player.loop = true; // Deixa a música repetindo
+
+    // Verifica se o botão existe antes de adicionar o clique
+    if (botaoMusica) {
+        botaoMusica.addEventListener("click", async () => {
+            
+            // Tenta iniciar o áudio
+            await Tone.start();
+
+            if (player.state === "started") {
+                // PAUSA se já estiver tocando
+                player.stop();
+                // Volta a opacidade ao normal
+                botaoMusica.style.opacity = "1";
+            } else {
+                // TOCA se estiver parado
+                player.start();
+                // Deixa o botão um pouco transparente para mostrar que está tocando
+                botaoMusica.style.opacity = "0.7";
+            }
+        });
+    } else {
+        console.error("Botão não encontrado! Verifique se o ID 'music-toggle' está correto no botão.");
+    }
+</script>
 </body>
 </html>
+
 
 
 
