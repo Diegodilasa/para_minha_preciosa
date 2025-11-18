@@ -11,67 +11,13 @@
     <!-- Tone.js CDN (Para a Trilha Sonora Secreta) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
 
-    <style>
-        /* 2. CSS para o ícone flutuante 🎵 */
-        #musicIcon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-    </style>
-</head>
-<body>
-
-    <button id="musicIcon">🎵</button>
-
     <script>
         // 4. JavaScript para fazer o botão funcionar
         
         // **IMPORTANTE:** // Coloque seu arquivo MP3 na mesma pasta deste HTML
         const player = new Tone.Player("sonosdois.mp3").toDestination();
         player.loop = true; // Faz a música repetir
-
-        const iconButton = document.getElementById("musicIcon");
-
-        iconButton.onclick = function() {
-            Tone.start().then(() => {
-                if (player.state === "started") {
-                    player.stop();
-                    iconButton.textContent = "🎵"; // Ícone de Play
-                } else {
-                    player.start();
-                    iconButton.textContent = "⏸️"; // Ícone de Pause
-                }
-            });
-        };
     </script>
-
-    <div id="vocaroo-icon">
-        <iframe width="300" height="60" src="https://vocaroo.com/embed/1fMHy0xWTBEJ?autoplay=0" frameborder="0" allow="autoplay"></iframe>
-    </div>
-
-</body>
-</html>
-
-    <div id="vocaroo-icon">
-        <iframe width="300" height="60" src="https://vocaroo.com/embed/1fMHy0xWTBEJ?autoplay=0" frameborder="0" allow="autoplay"></iframe>
-    </div>
-
-</body>
-</html>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -647,6 +593,7 @@
 
 </body>
 </html>
+
 
 
 
